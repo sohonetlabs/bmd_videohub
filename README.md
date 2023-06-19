@@ -21,7 +21,7 @@
         --ip IP          ip address
         --port PORT      telnet port
 
-#### example
+#### example read settings from videohub write json (labels and routes)
         get_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24
         {'0': 'Resolve Port 1', '1': 'Resolve Port 2', '2': 'Resolve Port 3', '3': 'Resolve Port 4', '4': 'LON-01 Port 1', '5': 'LON-01 Port 2', '6': 'LON-01 Port 3', '7': 'LON-01 Port 4', '8': 'SPARE', '9': 'DEAD PORT'}
         {
