@@ -1,0 +1,83 @@
+{
+  "inputs": {
+    "0": {
+      "label": "Input 1"
+    },
+    "1": {
+      "label": "Input 2"
+    },
+    "2": {
+      "label": "Input 3"
+    },
+    "3": {
+      "label": "Input 4"
+    },
+    "4": {
+      "label": "Input 5"
+    },
+    "5": {
+      "label": "Input 6"
+    },
+    "6": {
+      "label": "Input 7"
+    },
+    "7": {
+      "label": "Input 8"
+    },
+    "8": {
+      "label": "Input 9"
+    },
+    "9": {
+      "label": "Input 10"
+    }
+  },
+  "outputs": {
+    "0": {
+      "label": "Output 1",
+      "routing": "9"
+    },
+    "1": {
+      "label": "Output 2",
+      "routing": "8"
+    },
+    "2": {
+      "label": "Output 3",
+      "routing": "7"
+    },
+    "3": {
+      "label": "Output 4",
+      "routing": "6"
+    },
+    "4": {
+      "label": "Output 5",
+      "routing": "5"
+    },
+    "5": {
+      "label": "Output 6",
+      "routing": "4"
+    },
+    "6": {
+      "label": "Output 7",
+      "routing": "3"
+    },
+    "7": {
+      "label": "Output 8",
+      "routing": "2"
+    },
+    "8": {
+      "label": "Output 9",
+      "routing": "1"
+    },
+    "9": {
+      "label": "Output 10",
+      "routing": "0"
+    }
+  },
+  "metadata": {
+    "mac": "7c:2e:0d:a6:f3:3d",
+    "model": "Blackmagic Videohub 10x10 12G",
+    "UID": "2D1968E7F82E46AEB20C22BEAEA196F6",
+    "ip": "10.110.10.108",
+    "netmask": "255.255.255.0"
+  }
+}

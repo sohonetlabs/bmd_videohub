@@ -1,0 +1,76 @@
+{
+  "inputs": {
+    "0": {
+      "label": "Input 1"
+    },
+    "1": {
+      "label": "Input 2"
+    },
+    "2": {
+      "label": "Input 3"
+    },
+    "3": {
+      "label": "Input 4"
+    },
+    "4": {
+      "label": "Input 5"
+    },
+    "5": {
+      "label": "Input 6"
+    },
+    "6": {
+      "label": "Input 7"
+    },
+    "7": {
+      "label": "Input 8"
+    },
+    "8": {
+      "label": "Input 9"
+    },
+    "9": {
+      "label": "Input 10"
+    }
+  },
+  "outputs": {
+    "0": {
+      "label": "Output 1",
+      "routing": 0
+    },
+    "1": {
+      "label": "Output 2",
+      "routing": 1
+    },
+    "2": {
+      "label": "Output 3",
+      "routing": 2
+    },
+    "3": {
+      "label": "Output 4",
+      "routing": 3
+    },
+    "4": {
+      "label": "Output 5",
+      "routing": 4
+    },
+    "5": {
+      "label": "Output 6",
+      "routing": 5
+    },
+    "6": {
+      "label": "Output 7",
+      "routing": 6
+    },
+    "7": {
+      "label": "Output 8",
+      "routing": 7
+    },
+    "8": {
+      "label": "Output 9",
+      "routing": 8
+    },
+    "9": {
+      "label": "Output 10",
+      "routing": 9
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "inputs": {
+    "0": {
+      "label": "Resolve Port 1"
+    },
+    "1": {
+      "label": "Resolve Port 2"
+    },
+    "2": {
+      "label": "Resolve Port 3"
+    },
+    "3": {
+      "label": "Resolve Port 4"
+    },
+    "4": {
+      "label": "LON-01 Port 1"
+    },
+    "5": {
+      "label": "LON-01 Port 2"
+    },
+    "6": {
+      "label": "LON-01 Port 3"
+    },
+    "7": {
+      "label": "LON-01 Port 4"
+    },
+    "8": {
+      "label": "SPARE"
+    },
+    "9": {
+      "label": "DEAD PORT"
+    }
+  },
+  "outputs": {
+    "0": {
+      "label": "LON-02 Port 1",
+      "routing": 0
+    },
+    "1": {
+      "label": "LON-02 Port 2",
+      "routing": 1
+    },
+    "2": {
+      "label": "LON-02 Port 3",
+      "routing": 9
+    },
+    "3": {
+      "label": "LON-02 Port 4",
+      "routing": 9
+    },
+    "4": {
+      "label": "MAC-01 Port 1",
+      "routing": 4
+    },
+    "5": {
+      "label": "MAC-01 Port 2",
+      "routing": 5
+    },
+    "6": {
+      "label": "MAC-01 Port 3",
+      "routing": 6
+    },
+    "7": {
+      "label": "MAC-01 Port 4",
+      "routing": 7
+    },
+    "8": {
+      "label": "MAC-01 4K",
+      "routing": 0
+    },
+    "9": {
+      "label": "Monitor",
+      "routing": 0
+    }
+  }
+}
