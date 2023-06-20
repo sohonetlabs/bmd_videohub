@@ -1,9 +1,9 @@
 import warnings
 import asyncio, telnetlib3
-
-from threading import Thread
+import sys
 import time
 import json
+import logging
 
 #
 # reread the config for every action, as it could have changed since the last action
@@ -11,13 +11,14 @@ import json
 #
 #
 #
+#logging.basicConfig(level=logging.DEBUG)
 
 
 async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
 
     output = ""
-    # Establish a Telnet connection with timeout
-    reader, writer = await telnetlib3.open_connection(host=ip, port=port)
+    # Establish a Telnet connection with timeout1
+    reader, writer = await telnetlib3.open_connection(host=ip, port=port,connect_minwait=0.01)
 
     try:
         if tx_command:
@@ -59,7 +60,7 @@ class VideoHub:
         try:
             command = command.encode("ascii")
             # can be ACK\n\n or NAK\n\n
-            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))
+            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))#debug=True)
 
             if "NAK\n\n" in state:
                 raise Exception(f"BAD COMMAND {command}")

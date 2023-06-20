@@ -5,6 +5,7 @@ from threading import Thread
 
 from bmvideohub import VideoHub
 
+
 if __name__ == "__main__":
     vh = VideoHub("10.110.10.108")
     
