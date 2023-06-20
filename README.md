@@ -1,4 +1,6 @@
 # Lib to talk to blackmagic vdieohubs
+    Does not cache the labeling or routing information from the VideoHub.
+    Reads and parses each time.
 
 ## usage
 
@@ -105,7 +107,7 @@
             "UID": "2D1968E7F82E46AEB02C22BEAEA196F6",
             "ip": "192.168.1.24",
             "netmask": "255.255.255.0"
-        }
+            }
         }
 
 ### set_config -- read json and write to videohub (labels and routes)

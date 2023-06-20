@@ -1,8 +1,6 @@
 import argparse
 import json
 import time
-from threading import Thread
-
 from bmvideohub import VideoHub
 
 if __name__ == "__main__":
@@ -34,20 +32,20 @@ if __name__ == "__main__":
             "outputs": {},
             "metadata": {},
         }
-
+        print("Getting input labels")
         input_labels = vh.get_input_labels()
-        print(input_labels)
         for input in input_labels:
             config["inputs"][str(input)] = {}
             config["inputs"][str(input)]["label"] = input_labels[str(input)]
-
+        print("Getting output labels")
         output_labels = vh.get_output_labels()
+        print("Getting routing")
         output_routing = vh.get_output_routing()
         for output in output_labels:
             config["outputs"][str(output)] = {}
             config["outputs"][str(output)]["label"] = output_labels[str(output)]
             config["outputs"][str(output)]["routing"] = output_routing[str(output)]
-
+        print("Getting metadata")
         config["metadata"]["mac"] = vh.get_MAC()
         config["metadata"]["model"] = vh.get_model_name()
         config["metadata"]["UID"] = vh.get_UID()

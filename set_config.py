@@ -1,8 +1,6 @@
 import argparse
 import json
 import time
-from threading import Thread
-
 from bmvideohub import VideoHub
 
 if __name__ == "__main__":
@@ -42,29 +40,36 @@ if __name__ == "__main__":
 
                 print("=" * 80)
                 print("Labeling:")
+                bulk_commands = []
                 for input in config["inputs"]:
+                    bulk_commands.append((input, config["inputs"][input]["label"]))
                     print(f'Input  {input} label -> {config["inputs"][input]["label"]}')
-                    vh.set_input_label(input, config["inputs"][input]["label"])
 
+                vh.set_bulk_input_label(bulk_commands)
+
+                bulk_commands = []
                 for output in config["outputs"]:
-                    vh.set_output_label(output, config["outputs"][output]["label"])
+                    bulk_commands.append((output, config["outputs"][output]["label"]))
                     print(
                         f'Output {output} label -> {config["outputs"][output]["label"]}'
                     )
+                vh.set_bulk_output_label(bulk_commands)
 
                 print("-" * 40)
                 print("Routing:")
                 print("Soruce -> Destination")
                 print("-" * 40)
-                output_routing = vh.get_output_routing()
+                # re read the lables as they have may have changed
                 output_labels = vh.get_output_labels()
                 input_labels = vh.get_input_labels()
-
+                bulk_commands = []
                 for output in output_labels:
                     output_label = output_labels[output]
+                    bulk_commands.append((output, config["outputs"][output]["routing"]))
 
-                    vh.set_output_route(output, config["outputs"][output]["routing"])
-                    output_routing = vh.get_output_routing()
+                vh.set_bulk_output_route(bulk_commands)
+                output_routing = vh.get_output_routing()
+                for output in output_labels:
                     print(
                         f"{input_labels[output_routing[output]]} -> {output_labels[output]} "
                     )

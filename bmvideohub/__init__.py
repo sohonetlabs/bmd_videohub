@@ -1,8 +1,6 @@
 import warnings
+import asyncio, telnetlib3
 
-with warnings.catch_warnings():
-    warnings.filterwarnings("ignore",category=DeprecationWarning)
-    import telnetlib
 from threading import Thread
 import time
 import json
@@ -15,35 +13,55 @@ import json
 #
 
 
+async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
+
+    output = ""
+    # Establish a Telnet connection with timeout
+    reader, writer = await telnetlib3.open_connection(host=ip, port=port)
+
+    try:
+        if tx_command:
+            # eat the preamable
+            data = await asyncio.wait_for(
+                reader.readuntil(b"END PRELUDE:\n\n"), timeout=timeout
+            )
+
+            writer.write(tx_command.decode("ascii"))
+            await writer.drain()
+        data = await asyncio.wait_for(reader.readuntil(prompt), timeout=timeout)
+
+        output = data.decode("ascii")
+
+    except asyncio.exceptions.TimeoutError as e:
+        print(f"timeout reading from {ip}:{port}")
+        raise e
+
+    finally:
+        reader.close()
+        writer.close()
+    return output
+
+
 class VideoHub:
     def __init__(self, ip, port=9990):
         self._ip = ip
         self._port = port
         self.state = None
-        # conenct and check the protocol version
-        self.protocol_version()
-
 
     def _rx(self):
-        try:
-            connection = telnetlib.Telnet(self._ip, self._port, timeout=2)
-            state = connection.read_until(b"END PRELUDE:", timeout=2)
-            process_state = state.decode("ascii")  # .split('\n')
-            return process_state
-        except ConnectionRefusedError as e:
-            raise e
-        except EOFError as e:
-            raise e
+        result = asyncio.run(
+            _read_until(self._ip, self._port, b"END PRELUDE:\n\n")
+        )
+        return result
 
     def _tx(self, command):
+
         try:
-            connection = telnetlib.Telnet(self._ip, self._port, timeout=2)
-            state = connection.read_until(b"END PRELUDE:", timeout=2)
-            # ok have prompt now
-            connection.write(command.encode("ascii"))
-            connection.write("\n\n".encode("ascii"))
-            response = connection.read_until(b"ACK\n\n", timeout=2)
-            if b"NAK\n\n" in response:
+            command = command.encode("ascii")
+            # can be ACK\n\n or NAK\n\n
+            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))
+
+            if "NAK\n\n" in state:
                 raise Exception(f"BAD COMMAND {command}")
         except ConnectionRefusedError as e:
             raise e
@@ -80,8 +98,7 @@ class VideoHub:
         cmd_buffer = f"{key}\n"
         for index, value in values:
             cmd_buffer += f"{index} {value}\n"
-        cmd_buffer += "\n\n"
-        print(cmd_buffer)
+        cmd_buffer += "\n"
         self._tx(cmd_buffer)
 
     def protocol_version(self):
@@ -99,18 +116,18 @@ class VideoHub:
     def get_UID(self):
         return self._get_simple_value("Unique ID:")
 
-    def get_MAC(self):  
+    def get_MAC(self):
         return self._get_simple_value("MAC Address:")
-    
+
     def get_is_DHCP(self):
         return self._get_simple_value("Dynamic IP:")
-    
+
     def get_IP(self):
         return self._get_simple_value("Current Addresses:").split("/")[0]
-    
+
     def get_IP_netmask(self):
         return self._get_simple_value("Current Addresses:").split("/")[1]
-    
+
     def get_output_routing(self):
         return self._get_multi_value("VIDEO OUTPUT ROUTING:")
 
