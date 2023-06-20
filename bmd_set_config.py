@@ -1,6 +1,6 @@
 import argparse
 import json
-import time
+
 from bmvideohub import VideoHub
 
 if __name__ == "__main__":

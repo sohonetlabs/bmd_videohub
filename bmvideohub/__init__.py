@@ -1,28 +1,33 @@
-import warnings
-import asyncio, telnetlib3
-import sys
-import time
+import asyncio
 import json
 import logging
+import sys
+import time
+import warnings
+
+import telnetlib3
 
 #
 # reread the config for every action, as it could have changed since the last action
+# no state is stored in the library other than the IP address, port
 #
 #
 #
-#
-#logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 
 async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
 
     output = ""
-    # Establish a Telnet connection with timeout1
-    reader, writer = await telnetlib3.open_connection(host=ip, port=port,connect_minwait=0.01)
+    # Establish a Telnet connection, connect_minwait=2seconds is the default,
+    # reduce it to 10ms to speed up
+    reader, writer = await telnetlib3.open_connection(
+        host=ip, port=port, connect_minwait=0.01
+    )
 
     try:
         if tx_command:
-            # eat the preamable
+            # eat the preamable on connect
             data = await asyncio.wait_for(
                 reader.readuntil(b"END PRELUDE:\n\n"), timeout=timeout
             )
@@ -34,7 +39,7 @@ async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
         output = data.decode("ascii")
 
     except asyncio.exceptions.TimeoutError as e:
-        print(f"timeout reading from {ip}:{port}")
+        print(f"Timeout reading from {ip}:{port}")
         raise e
 
     finally:
@@ -47,12 +52,9 @@ class VideoHub:
     def __init__(self, ip, port=9990):
         self._ip = ip
         self._port = port
-        self.state = None
 
     def _rx(self):
-        result = asyncio.run(
-            _read_until(self._ip, self._port, b"END PRELUDE:\n\n")
-        )
+        result = asyncio.run(_read_until(self._ip, self._port, b"END PRELUDE:\n\n"))
         return result
 
     def _tx(self, command):
@@ -60,7 +62,7 @@ class VideoHub:
         try:
             command = command.encode("ascii")
             # can be ACK\n\n or NAK\n\n
-            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))#debug=True)
+            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))
 
             if "NAK\n\n" in state:
                 raise Exception(f"BAD COMMAND {command}")
@@ -148,7 +150,6 @@ class VideoHub:
         self._set_multi_value(f"VIDEO OUTPUT ROUTING:", routes)
 
     def set_input_label(self, index, label):
-        max_index = self.get_num_inputs()
         self._set_simple_value(f"INPUT LABELS:", f"{index} {label}")
 
     def set_bulk_input_label(self, labels):

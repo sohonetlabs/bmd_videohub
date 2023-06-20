@@ -1,6 +1,6 @@
 import argparse
 import json
-import time
+
 from bmvideohub import VideoHub
 
 if __name__ == "__main__":
@@ -14,7 +14,7 @@ if __name__ == "__main__":
         "--port",
         dest="port",
         type=str,
-        help="telnet port",
+        help="telnet port defaults to 9990",
         required=False,
         default=9990,
     )

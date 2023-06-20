@@ -1,14 +1,12 @@
 import json
-#import telnetlib
 import time
-from threading import Thread
 
 from bmvideohub import VideoHub
 
 
 if __name__ == "__main__":
     vh = VideoHub("10.110.10.108")
-    
+
     print(vh.protocol_version())
     print(vh.get_num_inputs())
     print(vh.get_num_outputs())
@@ -19,7 +17,7 @@ if __name__ == "__main__":
     print("-")
     print(vh.get_input_labels())
     print("-")
-    
+
     print(vh.get_output_labels())
     print(vh.get_output_locks())
     vh.set_output_route(0, 1)
