@@ -11,9 +11,9 @@
     print(input_labels)
 
 ## examples
-### get_config
-        python get_config.py --help
-        usage: get_config.py [-h] --config CONFIG --ip IP [--port PORT]
+### bmd_get_config
+        python bmd_get_config.py --help
+        usage: bmd_get_config.py [-h] --config CONFIG --ip IP [--port PORT]
 
         Set VideoHub config
 
@@ -24,7 +24,7 @@
         --port PORT      telnet port
 
 #### example read settings from videohub write json (labels and routes)
-        get_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24
+        bmd_get_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24
         {'0': 'Resolve Port 1', '1': 'Resolve Port 2', '2': 'Resolve Port 3', '3': 'Resolve Port 4', '4': 'LON-01 Port 1', '5': 'LON-01 Port 2', '6': 'LON-01 Port 3', '7': 'LON-01 Port 4', '8': 'SPARE', '9': 'DEAD PORT'}
         {
         "inputs": {
@@ -110,9 +110,9 @@
             }
         }
 
-### set_config -- read json and write to videohub (labels and routes)
+### bmd_set_config -- read json and write to videohub (labels and routes)
 
-        set_config.py --help
+        bmd_set_config.py --help
         usage: set_config.py [-h] --config CONFIG --ip IP [--port PORT]
 
         Set VideoHub config
@@ -125,7 +125,7 @@
 
 #### example
 
-        set_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24
+        bmd_set_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24
         ================================================================================
         Labeling:
         Input  0 label -> Resolve Port 1
