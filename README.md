@@ -11,7 +11,7 @@ Lock protocol not really implemented as yet.
     import from bmvideohub import VideoHub
 
     vh = VideoHub("192.168.1.24")
-    input_labels = vh.input_labels = vh.get_input_labels()
+    input_labels = vh.get_input_labels()
     print(input_labels)
 
 ## Docs
