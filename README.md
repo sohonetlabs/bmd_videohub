@@ -1,6 +1,10 @@
-# Lib to talk to blackmagic vdieohubs
-    Does not cache the labeling or routing information from the VideoHub.
-    Reads and parses each time.
+# Lib to talk to blackmagic videohubs
+Does not cache the labeling or routing information from the VideoHub.
+Reads and parses each time.
+see for protocol [https://documents.blackmagicdesign.com/DeveloperManuals/VideohubDeveloperInformation.pdf](https://documents.blackmagicdesign.com/DeveloperManuals/VideohubDeveloperInformation.pdf)
+
+Lock protocol not really implemented as yet.
+     
 
 ## usage
 
@@ -9,6 +13,9 @@
     vh = VideoHub("192.168.1.24")
     input_labels = vh.input_labels = vh.get_input_labels()
     print(input_labels)
+
+## Docs
+see [docs](docs/index.html)
 
 ## examples
 ### bmd_get_config

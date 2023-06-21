@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>bmvideohub API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>bmvideohub</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import asyncio
+import json
+import logging
+import sys
+import time
+import warnings
+
+import telnetlib3
+
+#
+# reread the config for every action, as it could have changed since the last action
+# no state is stored in the library other than the IP address, port
+#
+#
+#
+# logging.basicConfig(level=logging.DEBUG)
+
+
+async def _read_until(ip, port, prompt, tx_command=b&#34;&#34;, timeout=2):
+
+    output = &#34;&#34;
+    &#39;&#39;&#39; Establish a Telnet connection, connect_minwait=2seconds is the default,
+        reduce it to 10ms to speed up&#39;&#39;&#39;
+    reader, writer = await telnetlib3.open_connection(
+        host=ip, port=port, connect_minwait=0.01
+    )
+
+    try:
+        if tx_command:
+            # eat the preamable on connect as it is not needed
+            data = await asyncio.wait_for(
+                reader.readuntil(b&#34;END PRELUDE:\n\n&#34;), timeout=timeout
+            )
+
+            writer.write(tx_command.decode(&#34;ascii&#34;))
+            await writer.drain()
+        data = await asyncio.wait_for(reader.readuntil(prompt), timeout=timeout)
+
+        output = data.decode(&#34;ascii&#34;)
+
+    except asyncio.exceptions.TimeoutError as e:
+        print(f&#34;Timeout reading from {ip}:{port}&#34;)
+        raise e
+
+    finally:
+        reader.close()
+        writer.close()
+    return output
+
+
+class VideoHub:
+    def __init__(self, ip, port=9990):
+        &#39;&#39;&#39;Connect to a Blackmagic VideoHub takes an IP address and port number
+           port is optional and defaults to 9990&#39;&#39;&#39;
+        self._ip = ip
+        self._port = port
+        # check we can connect
+        self.ping()
+
+    def _rx(self):
+        result = asyncio.run(_read_until(self._ip, self._port, b&#34;END PRELUDE:\n\n&#34;))
+        return result
+
+    def _tx(self, command):
+
+        try:
+            command = command.encode(&#34;ascii&#34;)
+            # can be ACK\n\n or NAK\n\n
+            state = asyncio.run(_read_until(self._ip, self._port, b&#34;K\n\n&#34;, command))
+
+            if &#34;NAK\n\n&#34; in state:
+                raise Exception(f&#34;BAD COMMAND {command}&#34;)
+        except ConnectionRefusedError as e:
+            raise e
+        except EOFError as e:
+            raise e
+
+    def _get_simple_value(self, key):
+        state = self._rx()
+        for line in state.split(&#34;\n&#34;):
+            if line.startswith(key):
+                return line.split(&#34;: &#34;)[1]
+        raise Exception(f&#34;Key {key} not found&#34;)
+    
+    def _get_multi_value(self, key):
+        state = self._rx().split(&#34;\n&#34;)
+        in_config = False
+        config = {}
+        for line in state:
+
+            if line.startswith(key):
+                in_config = True
+                continue
+            if len(line) == 0 and in_config:
+                in_config = False
+                break
+            if in_config:
+                index, value = line.split(&#34; &#34;, 1)
+                config[str(index)] = value
+        return config
+
+    def _set_simple_value(self, key, value):
+        self._tx(f&#34;{key}\n {value}\n\n&#34;)
+
+    def _set_multi_value(self, key, values):
+        cmd_buffer = f&#34;{key}\n&#34;
+        for index, value in values:
+            cmd_buffer += f&#34;{index} {value}\n&#34;
+        cmd_buffer += &#34;\n&#34;
+        self._tx(cmd_buffer)
+
+    def ping(self):
+        &#39;&#39;&#39;Pings the VideoHub, basically a no-op&#39;&#39;&#39;
+        self._tx(&#34;PING\n\n&#34;)
+
+    def protocol_version(self):
+        &#39;&#39;&#39;Returns the protocol version of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Version:&#34;)
+
+    def get_num_inputs(self):
+        &#39;&#39;&#39;Returns the number of inputs as int&#39;&#39;&#39;
+        return int(self._get_simple_value(&#34;Video inputs:&#34;))
+
+    def get_num_outputs(self):
+        &#39;&#39;&#39;Returns the number of outputs as int&#39;&#39;&#39;
+        return int(self._get_simple_value(&#34;Video outputs:&#34;))
+
+    def get_model_name(self):
+        &#39;&#39;&#39;Returns the model name of the VideoHub as string eg Blackmagic Videohub 10x10 12G&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Model name:&#34;)
+
+    def get_friendly_name(self):
+        &#39;&#39;&#39;Returns the firendly name of the VideoHub as string eg Blackmagic Videohub 10x10 12G&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Friendly name:&#34;)
+    
+    def get_UID(self):
+        &#39;&#39;&#39;Returns the unique ID of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Unique ID:&#34;)
+
+    def get_MAC(self):
+        &#39;&#39;&#39;Returns the MAC address of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;MAC Address:&#34;)
+
+    def get_is_DHCP(self):
+        &#39;&#39;&#39;Returns True if the VideoHub is using DHCP&#39;&#39;&#39;
+        value = self._get_simple_value(&#34;Dynamic IP:&#34;)
+        if value == &#34;true&#34;:
+            return True
+        else:
+            return False
+        
+    def get_IP(self):
+        &#39;&#39;&#39;Returns the IP address of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Current Addresses:&#34;).split(&#34;/&#34;)[0]
+
+    def get_IP_netmask(self):
+        &#39;&#39;&#39;Returns the IP netmask of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Current Addresses:&#34;).split(&#34;/&#34;)[1]
+
+    def get_output_routing(self):
+        &#39;&#39;&#39;Returns the output routing as dict indexed by output number  
+           eg {&#39;1&#39;: &#39;1&#39;, &#39;2&#39;: &#39;2&#39;, &#39;3&#39;: &#39;3&#39;, &#39;4&#39;: &#39;4&#39;, &#39;5&#39;: &#39;5&#39;,}&#39;&#39;&#39;
+        return self._get_multi_value(&#34;VIDEO OUTPUT ROUTING:&#34;)
+
+    def get_input_labels(self):
+        &#39;&#39;&#39;Returns the input labels as dict indexed by input number&#39;&#39;&#39;
+        return self._get_multi_value(&#34;INPUT LABELS:&#34;)
+
+    def get_output_labels(self):
+        &#39;&#39;&#39;Returns the output labels as dict indexed by output number&#39;&#39;&#39;
+        return self._get_multi_value(&#34;OUTPUT LABELS:&#34;)
+
+    def get_output_locks(self):
+        &#39;&#39;&#39;Returns the output locks as dict indexed by output number
+           Each port has a lock status of “O” for ports that are owned by the current client 
+           (i.e., locked from the same IP address), “L” for ports that are locked from a d
+           ifferent client, or “U” for unlocked.&#39;&#39;&#39;
+        return self._get_multi_value(&#34;VIDEO OUTPUT LOCKS:&#34;)
+    
+    def get_take_mode(self):
+        &#39;&#39;&#39;Returns the take mode as dict indexed by output number&#39;&#39;&#39;
+        take_mode = self._get_multi_value(&#34;TAKE MODE:&#34;)
+        bool_take_mode = {}
+        for key, value in take_mode.items():
+            if value == &#34;true&#34;:
+                bool_take_mode[key] = True
+            else:
+                bool_take_mode[key] = False
+        return bool_take_mode
+
+    def set_output_route(self, src, dest):
+        &#39;&#39;&#39;Sets the output route for a single output&#39;&#39;&#39;
+        self._set_simple_value(f&#34;VIDEO OUTPUT ROUTING:&#34;, f&#34;{src} {dest}&#34;)
+
+    def set_bulk_output_route(self, routes):
+        &#39;&#39;&#39;Sets the output route for multiple outputs takes a list of tuples 
+           eg [(1,1),(2,2),(3,3),(4,4),(5,5)]&#39;&#39;&#39;
+        self._set_multi_value(f&#34;VIDEO OUTPUT ROUTING:&#34;, routes)
+
+    def set_input_label(self, index, label):
+        &#39;&#39;&#39;Sets the input label for a single input&#39;&#39;&#39;
+        self._set_simple_value(f&#34;INPUT LABELS:&#34;, f&#34;{index} {label}&#34;)
+
+    def set_bulk_input_label(self, labels):
+        &#39;&#39;&#39;Sets the input label for multiple inputs takes a list of tuples 
+           eg [(1,1),(2,2),(3,3),(4,4),(5,5)]&#39;&#39;&#39;
+        self._set_multi_value(f&#34;INPUT LABELS:&#34;, labels)
+
+    def set_output_label(self, index, label):
+        &#39;&#39;&#39;Sets the output label for a single output&#39;&#39;&#39;
+        self._set_simple_value(f&#34;OUTPUT LABELS:&#34;, f&#34;{index} {label}&#34;)
+
+    def set_bulk_output_label(self, labels):
+        &#39;&#39;&#39;Sets the output label for multiple outputs takes a list of tuples&#39;&#39;&#39;
+        self._set_multi_value(f&#34;OUTPUT LABELS:&#34;, labels)
+
+    def set_output_lock(self, index, state):
+        &#39;&#39;&#39;Sets the output lock for a single output 
+           Each port has a lock status of “O” for ports that are owned by the current client 
+           (i.e., locked from the same IP address), “L” for ports that are locked from a 
+           different client, or “U” for unlocked.
+           Can only be set to O or U
+           &#39;&#39;&#39;
+        if state not in [&#34;O&#34;,&#34;U&#34;]:
+            raise Exception(&#34;OUTPUT LOCK must be O, or U, not {state}&#34;)
+        self._set_simple_value(f&#34;VIDEO OUTPUT LOCKS:&#34;, f&#34;{index} {state}&#34;)
+
+    def set_bulk_output_lock(self, locks):
+        &#39;&#39;&#39;Sets the output lock for multiple outputs takes a list of tuples.
+           Each port has a lock status of “O” for ports that are owned by the current client 
+           (i.e., locked from the same IP address), “L” for ports that are locked from a 
+           different client, or “U” for unlocked.
+           Can only be set to O or U
+           &#39;&#39;&#39;
+        for index, state in locks:
+            if state not in [&#34;O&#34;,&#34;U&#34;]:
+                raise Exception(&#34;OUTPUT LOCK must be O, U, not {index}, {state}&#34;)
+        self._set_multi_value(f&#34;VIDEO OUTPUT LOCKS:&#34;, locks)
+
+    def set_take_mode(self, index, mode):
+        &#39;&#39;&#39;Sets the take mode for a single output takes bool eg true or false&#39;&#39;&#39;
+        if mode:
+            mode = &#34;true&#34;
+        else:
+            mode = &#34;false&#34;
+        self._set_simple_value(f&#34;TAKE MODE:&#34;, f&#34;{index} {mode}&#34;)
+
+    def set_bulk_take_mode(self, modes):
+        &#39;&#39;&#39;Sets the take mode for multiple outputs takes a list of tuples eg true or false&#39;&#39;&#39;
+        str_modes = []
+        for index, mode in modes:
+            if mode:
+                str_mode = &#34;true&#34;
+            else:           
+                str_mode = &#34;false&#34;  
+            str_modes.append((index, str_mode))
+        self._set_multi_value(f&#34;TAKE MODE:&#34;, str_modes)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="bmvideohub.VideoHub"><code class="flex name class">
+<span>class <span class="ident">VideoHub</span></span>
+<span>(</span><span>ip, port=9990)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Connect to a Blackmagic VideoHub takes an IP address and port number
+port is optional and defaults to 9990</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VideoHub:
+    def __init__(self, ip, port=9990):
+        &#39;&#39;&#39;Connect to a Blackmagic VideoHub takes an IP address and port number
+           port is optional and defaults to 9990&#39;&#39;&#39;
+        self._ip = ip
+        self._port = port
+        # check we can connect
+        self.ping()
+
+    def _rx(self):
+        result = asyncio.run(_read_until(self._ip, self._port, b&#34;END PRELUDE:\n\n&#34;))
+        return result
+
+    def _tx(self, command):
+
+        try:
+            command = command.encode(&#34;ascii&#34;)
+            # can be ACK\n\n or NAK\n\n
+            state = asyncio.run(_read_until(self._ip, self._port, b&#34;K\n\n&#34;, command))
+
+            if &#34;NAK\n\n&#34; in state:
+                raise Exception(f&#34;BAD COMMAND {command}&#34;)
+        except ConnectionRefusedError as e:
+            raise e
+        except EOFError as e:
+            raise e
+
+    def _get_simple_value(self, key):
+        state = self._rx()
+        for line in state.split(&#34;\n&#34;):
+            if line.startswith(key):
+                return line.split(&#34;: &#34;)[1]
+        raise Exception(f&#34;Key {key} not found&#34;)
+    
+    def _get_multi_value(self, key):
+        state = self._rx().split(&#34;\n&#34;)
+        in_config = False
+        config = {}
+        for line in state:
+
+            if line.startswith(key):
+                in_config = True
+                continue
+            if len(line) == 0 and in_config:
+                in_config = False
+                break
+            if in_config:
+                index, value = line.split(&#34; &#34;, 1)
+                config[str(index)] = value
+        return config
+
+    def _set_simple_value(self, key, value):
+        self._tx(f&#34;{key}\n {value}\n\n&#34;)
+
+    def _set_multi_value(self, key, values):
+        cmd_buffer = f&#34;{key}\n&#34;
+        for index, value in values:
+            cmd_buffer += f&#34;{index} {value}\n&#34;
+        cmd_buffer += &#34;\n&#34;
+        self._tx(cmd_buffer)
+
+    def ping(self):
+        &#39;&#39;&#39;Pings the VideoHub, basically a no-op&#39;&#39;&#39;
+        self._tx(&#34;PING\n\n&#34;)
+
+    def protocol_version(self):
+        &#39;&#39;&#39;Returns the protocol version of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Version:&#34;)
+
+    def get_num_inputs(self):
+        &#39;&#39;&#39;Returns the number of inputs as int&#39;&#39;&#39;
+        return int(self._get_simple_value(&#34;Video inputs:&#34;))
+
+    def get_num_outputs(self):
+        &#39;&#39;&#39;Returns the number of outputs as int&#39;&#39;&#39;
+        return int(self._get_simple_value(&#34;Video outputs:&#34;))
+
+    def get_model_name(self):
+        &#39;&#39;&#39;Returns the model name of the VideoHub as string eg Blackmagic Videohub 10x10 12G&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Model name:&#34;)
+
+    def get_friendly_name(self):
+        &#39;&#39;&#39;Returns the firendly name of the VideoHub as string eg Blackmagic Videohub 10x10 12G&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Friendly name:&#34;)
+    
+    def get_UID(self):
+        &#39;&#39;&#39;Returns the unique ID of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Unique ID:&#34;)
+
+    def get_MAC(self):
+        &#39;&#39;&#39;Returns the MAC address of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;MAC Address:&#34;)
+
+    def get_is_DHCP(self):
+        &#39;&#39;&#39;Returns True if the VideoHub is using DHCP&#39;&#39;&#39;
+        value = self._get_simple_value(&#34;Dynamic IP:&#34;)
+        if value == &#34;true&#34;:
+            return True
+        else:
+            return False
+        
+    def get_IP(self):
+        &#39;&#39;&#39;Returns the IP address of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Current Addresses:&#34;).split(&#34;/&#34;)[0]
+
+    def get_IP_netmask(self):
+        &#39;&#39;&#39;Returns the IP netmask of the VideoHub as string&#39;&#39;&#39;
+        return self._get_simple_value(&#34;Current Addresses:&#34;).split(&#34;/&#34;)[1]
+
+    def get_output_routing(self):
+        &#39;&#39;&#39;Returns the output routing as dict indexed by output number  
+           eg {&#39;1&#39;: &#39;1&#39;, &#39;2&#39;: &#39;2&#39;, &#39;3&#39;: &#39;3&#39;, &#39;4&#39;: &#39;4&#39;, &#39;5&#39;: &#39;5&#39;,}&#39;&#39;&#39;
+        return self._get_multi_value(&#34;VIDEO OUTPUT ROUTING:&#34;)
+
+    def get_input_labels(self):
+        &#39;&#39;&#39;Returns the input labels as dict indexed by input number&#39;&#39;&#39;
+        return self._get_multi_value(&#34;INPUT LABELS:&#34;)
+
+    def get_output_labels(self):
+        &#39;&#39;&#39;Returns the output labels as dict indexed by output number&#39;&#39;&#39;
+        return self._get_multi_value(&#34;OUTPUT LABELS:&#34;)
+
+    def get_output_locks(self):
+        &#39;&#39;&#39;Returns the output locks as dict indexed by output number
+           Each port has a lock status of “O” for ports that are owned by the current client 
+           (i.e., locked from the same IP address), “L” for ports that are locked from a d
+           ifferent client, or “U” for unlocked.&#39;&#39;&#39;
+        return self._get_multi_value(&#34;VIDEO OUTPUT LOCKS:&#34;)
+    
+    def get_take_mode(self):
+        &#39;&#39;&#39;Returns the take mode as dict indexed by output number&#39;&#39;&#39;
+        take_mode = self._get_multi_value(&#34;TAKE MODE:&#34;)
+        bool_take_mode = {}
+        for key, value in take_mode.items():
+            if value == &#34;true&#34;:
+                bool_take_mode[key] = True
+            else:
+                bool_take_mode[key] = False
+        return bool_take_mode
+
+    def set_output_route(self, src, dest):
+        &#39;&#39;&#39;Sets the output route for a single output&#39;&#39;&#39;
+        self._set_simple_value(f&#34;VIDEO OUTPUT ROUTING:&#34;, f&#34;{src} {dest}&#34;)
+
+    def set_bulk_output_route(self, routes):
+        &#39;&#39;&#39;Sets the output route for multiple outputs takes a list of tuples 
+           eg [(1,1),(2,2),(3,3),(4,4),(5,5)]&#39;&#39;&#39;
+        self._set_multi_value(f&#34;VIDEO OUTPUT ROUTING:&#34;, routes)
+
+    def set_input_label(self, index, label):
+        &#39;&#39;&#39;Sets the input label for a single input&#39;&#39;&#39;
+        self._set_simple_value(f&#34;INPUT LABELS:&#34;, f&#34;{index} {label}&#34;)
+
+    def set_bulk_input_label(self, labels):
+        &#39;&#39;&#39;Sets the input label for multiple inputs takes a list of tuples 
+           eg [(1,1),(2,2),(3,3),(4,4),(5,5)]&#39;&#39;&#39;
+        self._set_multi_value(f&#34;INPUT LABELS:&#34;, labels)
+
+    def set_output_label(self, index, label):
+        &#39;&#39;&#39;Sets the output label for a single output&#39;&#39;&#39;
+        self._set_simple_value(f&#34;OUTPUT LABELS:&#34;, f&#34;{index} {label}&#34;)
+
+    def set_bulk_output_label(self, labels):
+        &#39;&#39;&#39;Sets the output label for multiple outputs takes a list of tuples&#39;&#39;&#39;
+        self._set_multi_value(f&#34;OUTPUT LABELS:&#34;, labels)
+
+    def set_output_lock(self, index, state):
+        &#39;&#39;&#39;Sets the output lock for a single output 
+           Each port has a lock status of “O” for ports that are owned by the current client 
+           (i.e., locked from the same IP address), “L” for ports that are locked from a 
+           different client, or “U” for unlocked.
+           Can only be set to O or U
+           &#39;&#39;&#39;
+        if state not in [&#34;O&#34;,&#34;U&#34;]:
+            raise Exception(&#34;OUTPUT LOCK must be O, or U, not {state}&#34;)
+        self._set_simple_value(f&#34;VIDEO OUTPUT LOCKS:&#34;, f&#34;{index} {state}&#34;)
+
+    def set_bulk_output_lock(self, locks):
+        &#39;&#39;&#39;Sets the output lock for multiple outputs takes a list of tuples.
+           Each port has a lock status of “O” for ports that are owned by the current client 
+           (i.e., locked from the same IP address), “L” for ports that are locked from a 
+           different client, or “U” for unlocked.
+           Can only be set to O or U
+           &#39;&#39;&#39;
+        for index, state in locks:
+            if state not in [&#34;O&#34;,&#34;U&#34;]:
+                raise Exception(&#34;OUTPUT LOCK must be O, U, not {index}, {state}&#34;)
+        self._set_multi_value(f&#34;VIDEO OUTPUT LOCKS:&#34;, locks)
+
+    def set_take_mode(self, index, mode):
+        &#39;&#39;&#39;Sets the take mode for a single output takes bool eg true or false&#39;&#39;&#39;
+        if mode:
+            mode = &#34;true&#34;
+        else:
+            mode = &#34;false&#34;
+        self._set_simple_value(f&#34;TAKE MODE:&#34;, f&#34;{index} {mode}&#34;)
+
+    def set_bulk_take_mode(self, modes):
+        &#39;&#39;&#39;Sets the take mode for multiple outputs takes a list of tuples eg true or false&#39;&#39;&#39;
+        str_modes = []
+        for index, mode in modes:
+            if mode:
+                str_mode = &#34;true&#34;
+            else:           
+                str_mode = &#34;false&#34;  
+            str_modes.append((index, str_mode))
+        self._set_multi_value(f&#34;TAKE MODE:&#34;, str_modes)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="bmvideohub.VideoHub.get_IP"><code class="name flex">
+<span>def <span class="ident">get_IP</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the IP address of the VideoHub as string</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_IP(self):
+    &#39;&#39;&#39;Returns the IP address of the VideoHub as string&#39;&#39;&#39;
+    return self._get_simple_value(&#34;Current Addresses:&#34;).split(&#34;/&#34;)[0]</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_IP_netmask"><code class="name flex">
+<span>def <span class="ident">get_IP_netmask</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the IP netmask of the VideoHub as string</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_IP_netmask(self):
+    &#39;&#39;&#39;Returns the IP netmask of the VideoHub as string&#39;&#39;&#39;
+    return self._get_simple_value(&#34;Current Addresses:&#34;).split(&#34;/&#34;)[1]</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_MAC"><code class="name flex">
+<span>def <span class="ident">get_MAC</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the MAC address of the VideoHub as string</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_MAC(self):
+    &#39;&#39;&#39;Returns the MAC address of the VideoHub as string&#39;&#39;&#39;
+    return self._get_simple_value(&#34;MAC Address:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_UID"><code class="name flex">
+<span>def <span class="ident">get_UID</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the unique ID of the VideoHub as string</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_UID(self):
+    &#39;&#39;&#39;Returns the unique ID of the VideoHub as string&#39;&#39;&#39;
+    return self._get_simple_value(&#34;Unique ID:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_friendly_name"><code class="name flex">
+<span>def <span class="ident">get_friendly_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the firendly name of the VideoHub as string eg Blackmagic Videohub 10x10 12G</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_friendly_name(self):
+    &#39;&#39;&#39;Returns the firendly name of the VideoHub as string eg Blackmagic Videohub 10x10 12G&#39;&#39;&#39;
+    return self._get_simple_value(&#34;Friendly name:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_input_labels"><code class="name flex">
+<span>def <span class="ident">get_input_labels</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the input labels as dict indexed by input number</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_input_labels(self):
+    &#39;&#39;&#39;Returns the input labels as dict indexed by input number&#39;&#39;&#39;
+    return self._get_multi_value(&#34;INPUT LABELS:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_is_DHCP"><code class="name flex">
+<span>def <span class="ident">get_is_DHCP</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns True if the VideoHub is using DHCP</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_is_DHCP(self):
+    &#39;&#39;&#39;Returns True if the VideoHub is using DHCP&#39;&#39;&#39;
+    value = self._get_simple_value(&#34;Dynamic IP:&#34;)
+    if value == &#34;true&#34;:
+        return True
+    else:
+        return False</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_model_name"><code class="name flex">
+<span>def <span class="ident">get_model_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the model name of the VideoHub as string eg Blackmagic Videohub 10x10 12G</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_model_name(self):
+    &#39;&#39;&#39;Returns the model name of the VideoHub as string eg Blackmagic Videohub 10x10 12G&#39;&#39;&#39;
+    return self._get_simple_value(&#34;Model name:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_num_inputs"><code class="name flex">
+<span>def <span class="ident">get_num_inputs</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of inputs as int</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_num_inputs(self):
+    &#39;&#39;&#39;Returns the number of inputs as int&#39;&#39;&#39;
+    return int(self._get_simple_value(&#34;Video inputs:&#34;))</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_num_outputs"><code class="name flex">
+<span>def <span class="ident">get_num_outputs</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of outputs as int</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_num_outputs(self):
+    &#39;&#39;&#39;Returns the number of outputs as int&#39;&#39;&#39;
+    return int(self._get_simple_value(&#34;Video outputs:&#34;))</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_output_labels"><code class="name flex">
+<span>def <span class="ident">get_output_labels</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the output labels as dict indexed by output number</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_output_labels(self):
+    &#39;&#39;&#39;Returns the output labels as dict indexed by output number&#39;&#39;&#39;
+    return self._get_multi_value(&#34;OUTPUT LABELS:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_output_locks"><code class="name flex">
+<span>def <span class="ident">get_output_locks</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the output locks as dict indexed by output number
+Each port has a lock status of “O” for ports that are owned by the current client
+(i.e., locked from the same IP address), “L” for ports that are locked from a d
+ifferent client, or “U” for unlocked.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_output_locks(self):
+    &#39;&#39;&#39;Returns the output locks as dict indexed by output number
+       Each port has a lock status of “O” for ports that are owned by the current client 
+       (i.e., locked from the same IP address), “L” for ports that are locked from a d
+       ifferent client, or “U” for unlocked.&#39;&#39;&#39;
+    return self._get_multi_value(&#34;VIDEO OUTPUT LOCKS:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_output_routing"><code class="name flex">
+<span>def <span class="ident">get_output_routing</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the output routing as dict indexed by output number<br>
+eg {'1': '1', '2': '2', '3': '3', '4': '4', '5': '5',}</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_output_routing(self):
+    &#39;&#39;&#39;Returns the output routing as dict indexed by output number  
+       eg {&#39;1&#39;: &#39;1&#39;, &#39;2&#39;: &#39;2&#39;, &#39;3&#39;: &#39;3&#39;, &#39;4&#39;: &#39;4&#39;, &#39;5&#39;: &#39;5&#39;,}&#39;&#39;&#39;
+    return self._get_multi_value(&#34;VIDEO OUTPUT ROUTING:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.get_take_mode"><code class="name flex">
+<span>def <span class="ident">get_take_mode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the take mode as dict indexed by output number</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_take_mode(self):
+    &#39;&#39;&#39;Returns the take mode as dict indexed by output number&#39;&#39;&#39;
+    take_mode = self._get_multi_value(&#34;TAKE MODE:&#34;)
+    bool_take_mode = {}
+    for key, value in take_mode.items():
+        if value == &#34;true&#34;:
+            bool_take_mode[key] = True
+        else:
+            bool_take_mode[key] = False
+    return bool_take_mode</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.ping"><code class="name flex">
+<span>def <span class="ident">ping</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pings the VideoHub, basically a no-op</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ping(self):
+    &#39;&#39;&#39;Pings the VideoHub, basically a no-op&#39;&#39;&#39;
+    self._tx(&#34;PING\n\n&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.protocol_version"><code class="name flex">
+<span>def <span class="ident">protocol_version</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the protocol version of the VideoHub as string</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def protocol_version(self):
+    &#39;&#39;&#39;Returns the protocol version of the VideoHub as string&#39;&#39;&#39;
+    return self._get_simple_value(&#34;Version:&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_bulk_input_label"><code class="name flex">
+<span>def <span class="ident">set_bulk_input_label</span></span>(<span>self, labels)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the input label for multiple inputs takes a list of tuples
+eg [(1,1),(2,2),(3,3),(4,4),(5,5)]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_bulk_input_label(self, labels):
+    &#39;&#39;&#39;Sets the input label for multiple inputs takes a list of tuples 
+       eg [(1,1),(2,2),(3,3),(4,4),(5,5)]&#39;&#39;&#39;
+    self._set_multi_value(f&#34;INPUT LABELS:&#34;, labels)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_bulk_output_label"><code class="name flex">
+<span>def <span class="ident">set_bulk_output_label</span></span>(<span>self, labels)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the output label for multiple outputs takes a list of tuples</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_bulk_output_label(self, labels):
+    &#39;&#39;&#39;Sets the output label for multiple outputs takes a list of tuples&#39;&#39;&#39;
+    self._set_multi_value(f&#34;OUTPUT LABELS:&#34;, labels)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_bulk_output_lock"><code class="name flex">
+<span>def <span class="ident">set_bulk_output_lock</span></span>(<span>self, locks)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the output lock for multiple outputs takes a list of tuples.
+Each port has a lock status of “O” for ports that are owned by the current client
+(i.e., locked from the same IP address), “L” for ports that are locked from a
+different client, or “U” for unlocked.
+Can only be set to O or U</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_bulk_output_lock(self, locks):
+    &#39;&#39;&#39;Sets the output lock for multiple outputs takes a list of tuples.
+       Each port has a lock status of “O” for ports that are owned by the current client 
+       (i.e., locked from the same IP address), “L” for ports that are locked from a 
+       different client, or “U” for unlocked.
+       Can only be set to O or U
+       &#39;&#39;&#39;
+    for index, state in locks:
+        if state not in [&#34;O&#34;,&#34;U&#34;]:
+            raise Exception(&#34;OUTPUT LOCK must be O, U, not {index}, {state}&#34;)
+    self._set_multi_value(f&#34;VIDEO OUTPUT LOCKS:&#34;, locks)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_bulk_output_route"><code class="name flex">
+<span>def <span class="ident">set_bulk_output_route</span></span>(<span>self, routes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the output route for multiple outputs takes a list of tuples
+eg [(1,1),(2,2),(3,3),(4,4),(5,5)]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_bulk_output_route(self, routes):
+    &#39;&#39;&#39;Sets the output route for multiple outputs takes a list of tuples 
+       eg [(1,1),(2,2),(3,3),(4,4),(5,5)]&#39;&#39;&#39;
+    self._set_multi_value(f&#34;VIDEO OUTPUT ROUTING:&#34;, routes)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_bulk_take_mode"><code class="name flex">
+<span>def <span class="ident">set_bulk_take_mode</span></span>(<span>self, modes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the take mode for multiple outputs takes a list of tuples eg true or false</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_bulk_take_mode(self, modes):
+    &#39;&#39;&#39;Sets the take mode for multiple outputs takes a list of tuples eg true or false&#39;&#39;&#39;
+    str_modes = []
+    for index, mode in modes:
+        if mode:
+            str_mode = &#34;true&#34;
+        else:           
+            str_mode = &#34;false&#34;  
+        str_modes.append((index, str_mode))
+    self._set_multi_value(f&#34;TAKE MODE:&#34;, str_modes)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_input_label"><code class="name flex">
+<span>def <span class="ident">set_input_label</span></span>(<span>self, index, label)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the input label for a single input</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_input_label(self, index, label):
+    &#39;&#39;&#39;Sets the input label for a single input&#39;&#39;&#39;
+    self._set_simple_value(f&#34;INPUT LABELS:&#34;, f&#34;{index} {label}&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_output_label"><code class="name flex">
+<span>def <span class="ident">set_output_label</span></span>(<span>self, index, label)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the output label for a single output</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_output_label(self, index, label):
+    &#39;&#39;&#39;Sets the output label for a single output&#39;&#39;&#39;
+    self._set_simple_value(f&#34;OUTPUT LABELS:&#34;, f&#34;{index} {label}&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_output_lock"><code class="name flex">
+<span>def <span class="ident">set_output_lock</span></span>(<span>self, index, state)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the output lock for a single output
+Each port has a lock status of “O” for ports that are owned by the current client
+(i.e., locked from the same IP address), “L” for ports that are locked from a
+different client, or “U” for unlocked.
+Can only be set to O or U</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_output_lock(self, index, state):
+    &#39;&#39;&#39;Sets the output lock for a single output 
+       Each port has a lock status of “O” for ports that are owned by the current client 
+       (i.e., locked from the same IP address), “L” for ports that are locked from a 
+       different client, or “U” for unlocked.
+       Can only be set to O or U
+       &#39;&#39;&#39;
+    if state not in [&#34;O&#34;,&#34;U&#34;]:
+        raise Exception(&#34;OUTPUT LOCK must be O, or U, not {state}&#34;)
+    self._set_simple_value(f&#34;VIDEO OUTPUT LOCKS:&#34;, f&#34;{index} {state}&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_output_route"><code class="name flex">
+<span>def <span class="ident">set_output_route</span></span>(<span>self, src, dest)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the output route for a single output</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_output_route(self, src, dest):
+    &#39;&#39;&#39;Sets the output route for a single output&#39;&#39;&#39;
+    self._set_simple_value(f&#34;VIDEO OUTPUT ROUTING:&#34;, f&#34;{src} {dest}&#34;)</code></pre>
+</details>
+</dd>
+<dt id="bmvideohub.VideoHub.set_take_mode"><code class="name flex">
+<span>def <span class="ident">set_take_mode</span></span>(<span>self, index, mode)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the take mode for a single output takes bool eg true or false</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_take_mode(self, index, mode):
+    &#39;&#39;&#39;Sets the take mode for a single output takes bool eg true or false&#39;&#39;&#39;
+    if mode:
+        mode = &#34;true&#34;
+    else:
+        mode = &#34;false&#34;
+    self._set_simple_value(f&#34;TAKE MODE:&#34;, f&#34;{index} {mode}&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="bmvideohub.VideoHub" href="#bmvideohub.VideoHub">VideoHub</a></code></h4>
+<ul class="">
+<li><code><a title="bmvideohub.VideoHub.get_IP" href="#bmvideohub.VideoHub.get_IP">get_IP</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_IP_netmask" href="#bmvideohub.VideoHub.get_IP_netmask">get_IP_netmask</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_MAC" href="#bmvideohub.VideoHub.get_MAC">get_MAC</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_UID" href="#bmvideohub.VideoHub.get_UID">get_UID</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_friendly_name" href="#bmvideohub.VideoHub.get_friendly_name">get_friendly_name</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_input_labels" href="#bmvideohub.VideoHub.get_input_labels">get_input_labels</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_is_DHCP" href="#bmvideohub.VideoHub.get_is_DHCP">get_is_DHCP</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_model_name" href="#bmvideohub.VideoHub.get_model_name">get_model_name</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_num_inputs" href="#bmvideohub.VideoHub.get_num_inputs">get_num_inputs</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_num_outputs" href="#bmvideohub.VideoHub.get_num_outputs">get_num_outputs</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_output_labels" href="#bmvideohub.VideoHub.get_output_labels">get_output_labels</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_output_locks" href="#bmvideohub.VideoHub.get_output_locks">get_output_locks</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_output_routing" href="#bmvideohub.VideoHub.get_output_routing">get_output_routing</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.get_take_mode" href="#bmvideohub.VideoHub.get_take_mode">get_take_mode</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.ping" href="#bmvideohub.VideoHub.ping">ping</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.protocol_version" href="#bmvideohub.VideoHub.protocol_version">protocol_version</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_bulk_input_label" href="#bmvideohub.VideoHub.set_bulk_input_label">set_bulk_input_label</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_bulk_output_label" href="#bmvideohub.VideoHub.set_bulk_output_label">set_bulk_output_label</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_bulk_output_lock" href="#bmvideohub.VideoHub.set_bulk_output_lock">set_bulk_output_lock</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_bulk_output_route" href="#bmvideohub.VideoHub.set_bulk_output_route">set_bulk_output_route</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_bulk_take_mode" href="#bmvideohub.VideoHub.set_bulk_take_mode">set_bulk_take_mode</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_input_label" href="#bmvideohub.VideoHub.set_input_label">set_input_label</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_output_label" href="#bmvideohub.VideoHub.set_output_label">set_output_label</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_output_lock" href="#bmvideohub.VideoHub.set_output_lock">set_output_lock</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_output_route" href="#bmvideohub.VideoHub.set_output_route">set_output_route</a></code></li>
+<li><code><a title="bmvideohub.VideoHub.set_take_mode" href="#bmvideohub.VideoHub.set_take_mode">set_take_mode</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

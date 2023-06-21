@@ -1,0 +1,76 @@
+{
+  "inputs": {
+    "0": {
+      "label": "Test1"
+    },
+    "1": {
+      "label": "Test2"
+    },
+    "2": {
+      "label": "Test3"
+    },
+    "3": {
+      "label": "Test4"
+    },
+    "4": {
+      "label": "Test5"
+    },
+    "5": {
+      "label": "Test6"
+    },
+    "6": {
+      "label": "Test7"
+    },
+    "7": {
+      "label": "Test8"
+    },
+    "8": {
+      "label": "Test9"
+    },
+    "9": {
+      "label": "Test10"
+    }
+  },
+  "outputs": {
+    "0": {
+      "label": "Test1 with spaces",
+      "routing": 2
+    },
+    "1": {
+      "label": "Test2",
+      "routing": 2
+    },
+    "2": {
+      "label": "Test3",
+      "routing": 2
+    },
+    "3": {
+      "label": "Test4",
+      "routing": 2
+    },
+    "4": {
+      "label": "Test5",
+      "routing": 2
+    },
+    "5": {
+      "label": "Test6",
+      "routing": 2
+    },
+    "6": {
+      "label": "Test7",
+      "routing": 2
+    },
+    "7": {
+      "label": "Test8",
+      "routing": 2
+    },
+    "8": {
+      "label": "Test9",
+      "routing": 2
+    },
+    "9": {
+      "label": "Test10",
+      "routing": 2
+    }
+  }
+}
