@@ -4,7 +4,6 @@ import json
 from bmvideohub import VideoHub
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description="Set VideoHub config")
     parser.add_argument(
         "--config", dest="config", type=str, help="config file to read", required=True
@@ -65,7 +64,12 @@ if __name__ == "__main__":
                 bulk_commands = []
                 for output in output_labels:
                     output_label = output_labels[output]
-                    bulk_commands.append((output, config["outputs"][output]["routing"]))
+                    # this might be partial set from the config so might not have all of
+                    # the outputs present
+                    if output in config["outputs"]:
+                        bulk_commands.append(
+                            (output, config["outputs"][output]["routing"])
+                        )
 
                 vh.set_bulk_output_route(bulk_commands)
                 output_routing = vh.get_output_routing()
