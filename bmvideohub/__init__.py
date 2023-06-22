@@ -29,7 +29,7 @@ async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
         if tx_command:
             # eat the preamable on connect as it is not needed
             data = await asyncio.wait_for(
-                reader.readuntil(b"END PRELUDE:\n\n"), timeout=timeout
+                reader.readuntil(b"\n\n"), timeout=timeout
             )
 
             writer.write(tx_command.decode("ascii"))
