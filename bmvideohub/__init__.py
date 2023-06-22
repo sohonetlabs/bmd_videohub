@@ -68,7 +68,7 @@ class VideoHub:
             # can be ACK\n\n or NAK\n\n
             state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))
 
-            if "NAK\n\n" in state:
+            if "\nNAK" in state:
                 raise Exception(f"BAD COMMAND {command}")
         except ConnectionRefusedError as e:
             raise e
