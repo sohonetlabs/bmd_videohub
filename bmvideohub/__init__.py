@@ -111,7 +111,7 @@ class VideoHub:
 
     def ping(self):
         """Pings the VideoHub, basically a no-op"""
-        self._tx("PING\n\n")
+        self._tx("PING:\n\n")
 
     def protocol_version(self):
         """Returns the protocol version of the VideoHub as string"""
