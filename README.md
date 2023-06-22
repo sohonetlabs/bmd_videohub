@@ -4,7 +4,8 @@ Reads and parses each time.
 see for protocol [https://documents.blackmagicdesign.com/DeveloperManuals/VideohubDeveloperInformation.pdf](https://documents.blackmagicdesign.com/DeveloperManuals/VideohubDeveloperInformation.pdf)
 
 Lock protocol not really implemented as yet.
-     
+
+** only supports v2.8 of protocol at the moment **
 
 ## usage
 
