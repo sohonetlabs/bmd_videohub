@@ -121,19 +121,24 @@ see [docs](docs/index.html)
 ### bmd_set_config -- read json and write to videohub (labels and routes)
 
         bmd_set_config.py --help
-        usage: set_config.py [-h] --config CONFIG --ip IP [--port PORT]
-
-        Set VideoHub config
-
-        options:
-        -h, --help       show this help message and exit
-        --config CONFIG  config file to read
-        --ip IP          ip address
-        --port PORT      telnet port
-
+		usage: bmd_set_config.py [-h] --config CONFIG --ip IP [--port PORT] [--route] [--label] [--input_label] [--output_label] [--strict]
+		
+		Set VideoHub config
+		
+		options:
+		  -h, --help           show this help message and exit
+		  --config CONFIG      config file to read
+		  --ip IP              ip address
+		  --port PORT          telnet port
+		  --route, -r          process routes, defaults to False
+		  --label, -l          process lables, defaults to False, implies --input_label and --output_label
+		  --input_label, -il   process input lables, defaults to False
+		  --output_label, -ol  process output lables, defaults to False
+		  --strict, -s         Bail if there are more inputs or outputs in the config file than the VideoHub, defaults to False
+		  
 #### example
 
-        bmd_set_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24
+        bmd_set_config.py --config ./examples/test_lab_quad_link.json --ip 192.168.1.24 -l -r
         ================================================================================
         Labeling:
         Input  0 label -> Resolve Port 1
