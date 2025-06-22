@@ -1,9 +1,4 @@
 import asyncio
-import json
-import logging
-import sys
-import time
-import warnings
 
 import telnetlib3
 
@@ -17,20 +12,15 @@ import telnetlib3
 
 
 async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
-
     output = ""
     # Establish a Telnet connection, connect_minwait=2seconds is the default,
     # reduce it to 10ms to speed up
-    reader, writer = await telnetlib3.open_connection(
-        host=ip, port=port, connect_minwait=0.01
-    )
+    reader, writer = await telnetlib3.open_connection(host=ip, port=port, connect_minwait=0.01)
 
     try:
         if tx_command:
             # eat the preamable on connect as it is not needed
-            data = await asyncio.wait_for(
-                reader.readuntil(b"\n\n"), timeout=timeout
-            )
+            data = await asyncio.wait_for(reader.readuntil(b"\n\n"), timeout=timeout)
 
             writer.write(tx_command.decode("ascii"))
             await writer.drain()
@@ -62,7 +52,6 @@ class VideoHub:
         return result
 
     def _tx(self, command):
-
         try:
             command = command.encode("ascii")
             # can be ACK\n\n or NAK\n\n
@@ -87,7 +76,6 @@ class VideoHub:
         in_config = False
         config = {}
         for line in state:
-
             if line.startswith(key):
                 in_config = True
                 continue
@@ -126,11 +114,11 @@ class VideoHub:
         return int(self._get_simple_value("Video outputs:"))
 
     def get_model_name(self):
-        """Returns the model name of the VideoHub as string eg Blackmagic Videohub 10x10 12G"""
+        """Returns the model name of the VideoHub as string"""
         return self._get_simple_value("Model name:")
 
     def get_friendly_name(self):
-        """Returns the firendly name of the VideoHub as string eg Blackmagic Videohub 10x10 12G"""
+        """Returns the friendly name of the VideoHub as string"""
         return self._get_simple_value("Friendly name:")
 
     def get_UID(self):
@@ -144,10 +132,7 @@ class VideoHub:
     def get_is_DHCP(self):
         """Returns True if the VideoHub is using DHCP"""
         value = self._get_simple_value("Dynamic IP:")
-        if value == "true":
-            return True
-        else:
-            return False
+        return value == "true"
 
     def get_IP(self):
         """Returns the IP address of the VideoHub as string"""
@@ -190,29 +175,29 @@ class VideoHub:
 
     def set_output_route(self, src, dest):
         """Sets the output route for a single output"""
-        self._set_simple_value(f"VIDEO OUTPUT ROUTING:", f"{src} {dest}")
+        self._set_simple_value("VIDEO OUTPUT ROUTING:", f"{src} {dest}")
 
     def set_bulk_output_route(self, routes):
         """Sets the output route for multiple outputs takes a list of tuples
         eg [(1,1),(2,2),(3,3),(4,4),(5,5)]"""
-        self._set_multi_value(f"VIDEO OUTPUT ROUTING:", routes)
+        self._set_multi_value("VIDEO OUTPUT ROUTING:", routes)
 
     def set_input_label(self, index, label):
         """Sets the input label for a single input"""
-        self._set_simple_value(f"INPUT LABELS:", f"{index} {label}")
+        self._set_simple_value("INPUT LABELS:", f"{index} {label}")
 
     def set_bulk_input_label(self, labels):
         """Sets the input label for multiple inputs takes a list of tuples
         eg [(1,1),(2,2),(3,3),(4,4),(5,5)]"""
-        self._set_multi_value(f"INPUT LABELS:", labels)
+        self._set_multi_value("INPUT LABELS:", labels)
 
     def set_output_label(self, index, label):
         """Sets the output label for a single output"""
-        self._set_simple_value(f"OUTPUT LABELS:", f"{index} {label}")
+        self._set_simple_value("OUTPUT LABELS:", f"{index} {label}")
 
     def set_bulk_output_label(self, labels):
         """Sets the output label for multiple outputs takes a list of tuples"""
-        self._set_multi_value(f"OUTPUT LABELS:", labels)
+        self._set_multi_value("OUTPUT LABELS:", labels)
 
     def set_output_lock(self, index, state):
         """Sets the output lock for a single output
@@ -223,7 +208,7 @@ class VideoHub:
         """
         if state not in ["O", "U"]:
             raise Exception("OUTPUT LOCK must be O, or U, not {state}")
-        self._set_simple_value(f"VIDEO OUTPUT LOCKS:", f"{index} {state}")
+        self._set_simple_value("VIDEO OUTPUT LOCKS:", f"{index} {state}")
 
     def set_bulk_output_lock(self, locks):
         """Sets the output lock for multiple outputs takes a list of tuples.
@@ -232,26 +217,20 @@ class VideoHub:
         different client, or “U” for unlocked.
         Can only be set to O or U
         """
-        for index, state in locks:
+        for _index, state in locks:
             if state not in ["O", "U"]:
                 raise Exception("OUTPUT LOCK must be O, U, not {index}, {state}")
-        self._set_multi_value(f"VIDEO OUTPUT LOCKS:", locks)
+        self._set_multi_value("VIDEO OUTPUT LOCKS:", locks)
 
     def set_take_mode(self, index, mode):
         """Sets the take mode for a single output takes bool eg true or false"""
-        if mode:
-            mode = "true"
-        else:
-            mode = "false"
-        self._set_simple_value(f"TAKE MODE:", f"{index} {mode}")
+        mode = "true" if mode else "false"
+        self._set_simple_value("TAKE MODE:", f"{index} {mode}")
 
     def set_bulk_take_mode(self, modes):
         """Sets the take mode for multiple outputs takes a list of tuples eg true or false"""
         str_modes = []
         for index, mode in modes:
-            if mode:
-                str_mode = "true"
-            else:
-                str_mode = "false"
+            str_mode = "true" if mode else "false"
             str_modes.append((index, str_mode))
-        self._set_multi_value(f"TAKE MODE:", str_modes)
+        self._set_multi_value("TAKE MODE:", str_modes)

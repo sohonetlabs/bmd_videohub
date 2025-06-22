@@ -7,6 +7,26 @@ Lock protocol not really implemented as yet.
 
 ** only supports v2.8 of protocol at the moment **
 
+## Development
+
+### Setup
+```bash
+# Create virtual environment and install dependencies
+make install
+
+# Run linting checks
+make lint
+
+# Auto-format code
+make format
+
+# Run both lint and format checks
+make check
+
+# Clean up virtual environment and cache files
+make clean
+```
+
 ## usage
 
     import from bmvideohub import VideoHub

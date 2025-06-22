@@ -5,9 +5,7 @@ from bmvideohub import VideoHub
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Set VideoHub config")
-    parser.add_argument(
-        "--config", dest="config", type=str, help="config file to write", required=True
-    )
+    parser.add_argument("--config", dest="config", type=str, help="config file to write", required=True)
     parser.add_argument("--ip", dest="ip", type=str, help="ip address", required=True)
     parser.add_argument(
         "--port",
@@ -55,6 +53,6 @@ if __name__ == "__main__":
 
         with open(config_file, "w") as f:
             f.write(json.dumps(config, indent=2))
-    except (ConnectionRefusedError, OSError) as e:
+    except (ConnectionRefusedError, OSError):
         print(f"Connection refused to {ip}")
         exit(1)

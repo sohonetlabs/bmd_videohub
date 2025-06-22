@@ -5,9 +5,7 @@ from bmvideohub import VideoHub
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Set VideoHub config")
-    parser.add_argument(
-        "--config", dest="config", type=str, help="config file to read", required=True
-    )
+    parser.add_argument("--config", dest="config", type=str, help="config file to read", required=True)
     parser.add_argument("--ip", dest="ip", type=str, help="ip address", required=True)
     parser.add_argument(
         "--port",
@@ -31,7 +29,7 @@ if __name__ == "__main__":
         "-l",
         dest="apply_labels",
         action="store_true",
-        help="process lables, defaults to False, implies --input_label and --output_label",
+        help="process labels (implies --input_label and --output_label)",
         required=False,
         default=False,
     )
@@ -60,7 +58,7 @@ if __name__ == "__main__":
         "-s",
         dest="strict_mode",
         action="store_true",
-        help="Bail if there are more inputs or outputs in the config file than the VideoHub, defaults to False",
+        help="Bail if config has more inputs/outputs than VideoHub, defaults to False",
         required=False,
         default=False,
     )
@@ -82,10 +80,10 @@ if __name__ == "__main__":
     try:
         vh = VideoHub(ip, port)
         try:
-            with open(config_file, "r") as f:
+            with open(config_file) as f:
                 try:
                     config = json.loads(f.read())
-                except json.decoder.JSONDecodeError as e:
+                except json.decoder.JSONDecodeError:
                     print(f"Error parsing config file {config_file}")
                     exit(1)
 
@@ -93,28 +91,19 @@ if __name__ == "__main__":
                     print(f"Bad formatting config file {config_file}")
                     exit(1)
 
-                
                 num_config_inputs = len(config["inputs"])
                 num_config_outputs = len(config["outputs"])
                 num_vh_inputs = vh.get_num_inputs()
                 num_vh_outputs = vh.get_num_outputs()
 
                 print("=" * 80)
-                print(
-                    f"Config file has {num_config_inputs} inputs and {num_config_outputs} outputs"
-                )
-                print(
-                    f"VideoHub has {num_vh_inputs} inputs and {num_vh_outputs} outputs"
-                )
+                print(f"Config: {num_config_inputs} inputs, {num_config_outputs} outputs")
+                print(f"VideoHub has {num_vh_inputs} inputs and {num_vh_outputs} outputs")
                 if num_config_inputs > num_vh_inputs:
-                    print(
-                        f"Config file has more inputs than VideoHub, skipping additional inputs"
-                    )
+                    print("Config has more inputs than VideoHub, skipping extras")
                     bail = True
                 if num_config_outputs > num_vh_outputs:
-                    print(
-                        f"Config file has more outputs than VideoHub, skipping additional outputs"
-                    )
+                    print("Config has more outputs than VideoHub, skipping extras")
                     bail = True
                 if strict_mode and bail:
                     print("Strict mode enabled, exiting")
@@ -123,17 +112,13 @@ if __name__ == "__main__":
                 print("-" * 40)
                 print("Labeling:")
                 print("-" * 40)
-                
+
                 if apply_input_labels:
                     bulk_commands = []
                     for input in config["inputs"]:
                         if int(input) < num_vh_inputs:
-                            bulk_commands.append(
-                                (input, config["inputs"][input]["label"])
-                            )
-                            print(
-                                f'Input  {input} label -> {config["inputs"][input]["label"]}'
-                            )
+                            bulk_commands.append((input, config["inputs"][input]["label"]))
+                            print(f"Input {input} -> {config['inputs'][input]['label']}")
                     vh.set_bulk_input_label(bulk_commands)
                 else:
                     print("-" * 40)
@@ -144,12 +129,8 @@ if __name__ == "__main__":
                     bulk_commands = []
                     for output in config["outputs"]:
                         if int(output) < num_vh_outputs:
-                            bulk_commands.append(
-                                (output, config["outputs"][output]["label"])
-                            )
-                            print(
-                                f'Output {output} label -> {config["outputs"][output]["label"]}'
-                            )
+                            bulk_commands.append((output, config["outputs"][output]["label"]))
+                            print(f"Out {output} -> {config['outputs'][output]['label']}")
                     vh.set_bulk_output_label(bulk_commands)
                 else:
                     print("-" * 40)
@@ -167,28 +148,24 @@ if __name__ == "__main__":
                     bulk_commands = []
                     for output in output_labels:
                         output_label = output_labels[output]
-                        # this might be partial set from the config so might not have all of
+                        # partial config might not have all outputs
                         # the outputs present
                         if output in config["outputs"]:
-                            bulk_commands.append(
-                                (output, config["outputs"][output]["routing"])
-                            )
+                            bulk_commands.append((output, config["outputs"][output]["routing"]))
 
                     vh.set_bulk_output_route(bulk_commands)
                     output_routing = vh.get_output_routing()
                     for output in output_labels:
-                        print(
-                            f"{input_labels[output_routing[output]]} -> {output_labels[output]} "
-                        )
+                        print(f"{input_labels[output_routing[output]]} -> {output_labels[output]}")
                 else:
                     print("-" * 40)
                     print("Skipping routing")
                     print("-" * 40)
 
                 print("=" * 80)
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             print(f"Config file {config_file} not found")
             exit(1)
-    except (ConnectionRefusedError, OSError) as e:
+    except (ConnectionRefusedError, OSError):
         print(f"Error connecting to {ip}")
         exit(1)

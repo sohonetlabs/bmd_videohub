@@ -1,8 +1,6 @@
 import json
-import time
 
 from bmvideohub import VideoHub
-
 
 if __name__ == "__main__":
     vh = VideoHub("10.110.10.108")
@@ -21,9 +19,7 @@ if __name__ == "__main__":
     print(vh.get_output_labels())
     print(vh.get_output_locks())
     vh.set_output_route(0, 1)
-    vh.set_bulk_output_route(
-        [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9), (9, 0)]
-    )
+    vh.set_bulk_output_route([(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9), (9, 0)])
     vh.set_input_label(0, "Test")
     input_label = "FOO"
     vh.set_bulk_input_label(
