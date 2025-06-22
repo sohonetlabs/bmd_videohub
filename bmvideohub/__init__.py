@@ -1,4 +1,5 @@
 import asyncio
+import contextlib
 
 import telnetlib3
 
@@ -13,11 +14,14 @@ import telnetlib3
 
 async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
     output = ""
-    # Establish a Telnet connection, connect_minwait=2seconds is the default,
-    # reduce it to 10ms to speed up
-    reader, writer = await telnetlib3.open_connection(host=ip, port=port, connect_minwait=0.01)
+    reader = None
+    writer = None
 
     try:
+        # Establish a Telnet connection, connect_minwait=2seconds is the default,
+        # reduce it to 10ms to speed up
+        reader, writer = await telnetlib3.open_connection(host=ip, port=port, connect_minwait=0.01)
+
         if tx_command:
             # eat the preamable on connect as it is not needed
             data = await asyncio.wait_for(reader.readuntil(b"\n\n"), timeout=timeout)
@@ -29,12 +33,23 @@ async def _read_until(ip, port, prompt, tx_command=b"", timeout=2):
         output = data.decode("ascii")
 
     except asyncio.exceptions.TimeoutError as e:
-        print(f"Timeout reading from {ip}:{port}")
-        raise e
-
+        raise TimeoutError(f"Timeout reading from {ip}:{port}") from e
+    except ConnectionRefusedError as e:
+        raise ConnectionRefusedError(f"Connection refused to {ip}:{port}") from e
+    except ConnectionResetError as e:
+        raise ConnectionResetError(f"Connection reset by {ip}:{port}") from e
+    except OSError as e:
+        raise OSError(f"Network error connecting to {ip}:{port}: {e}") from e
+    except UnicodeDecodeError as e:
+        raise ValueError(f"Invalid response encoding from {ip}:{port}: {e}") from e
     finally:
-        reader.close()
-        writer.close()
+        if writer:
+            writer.close()
+            with contextlib.suppress(Exception):
+                await writer.wait_closed()
+        if reader:
+            reader.close()
+
     return output
 
 
@@ -45,24 +60,37 @@ class VideoHub:
         self._ip = ip
         self._port = port
         # check we can connect
-        self.ping()
+        try:
+            self.ping()
+        except ConnectionError as e:
+            raise ConnectionError(f"Unable to connect to VideoHub at {ip}:{port}. {e}") from e
+        except Exception as e:
+            raise RuntimeError(f"Failed to initialize VideoHub connection: {e}") from e
 
     def _rx(self):
-        result = asyncio.run(_read_until(self._ip, self._port, b"END PRELUDE:\n\n"))
-        return result
+        try:
+            result = asyncio.run(_read_until(self._ip, self._port, b"END PRELUDE:\n\n"))
+            return result
+        except (ConnectionRefusedError, ConnectionResetError, OSError, TimeoutError) as e:
+            raise ConnectionError(f"Failed to read from VideoHub at {self._ip}:{self._port}: {e}") from e
+        except Exception as e:
+            raise RuntimeError(f"Unexpected error reading from VideoHub: {e}") from e
 
     def _tx(self, command):
         try:
-            command = command.encode("ascii")
+            command_bytes = command.encode("ascii")
             # can be ACK\n\n or NAK\n\n
-            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command))
+            state = asyncio.run(_read_until(self._ip, self._port, b"K\n\n", command_bytes))
 
             if "\nNAK" in state:
-                raise Exception(f"BAD COMMAND {command}")
-        except ConnectionRefusedError as e:
-            raise e
-        except EOFError as e:
-            raise e
+                raise ValueError(f"VideoHub rejected command: {command}")
+        except UnicodeEncodeError as e:
+            raise ValueError(f"Command contains non-ASCII characters: {e}") from e
+        except (ConnectionRefusedError, ConnectionResetError, OSError, TimeoutError) as e:
+            raise ConnectionError(f"Failed to send command to VideoHub: {e}") from e
+        except Exception as e:
+            # Re-raise any other exceptions with context
+            raise RuntimeError(f"Unexpected error sending command '{command}': {e}") from e
 
     def _get_simple_value(self, key):
         state = self._rx()

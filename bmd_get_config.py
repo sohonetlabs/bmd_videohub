@@ -53,6 +53,15 @@ if __name__ == "__main__":
 
         with open(config_file, "w") as f:
             f.write(json.dumps(config, indent=2))
-    except (ConnectionRefusedError, OSError):
-        print(f"Connection refused to {ip}")
+    except ConnectionError as e:
+        print(f"Connection error: {e}")
+        exit(1)
+    except TimeoutError as e:
+        print(f"Timeout error: {e}")
+        exit(1)
+    except ValueError as e:
+        print(f"Protocol error: {e}")
+        exit(1)
+    except Exception as e:
+        print(f"Unexpected error: {e}")
         exit(1)

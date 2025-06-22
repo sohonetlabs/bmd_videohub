@@ -166,6 +166,15 @@ if __name__ == "__main__":
         except FileNotFoundError:
             print(f"Config file {config_file} not found")
             exit(1)
-    except (ConnectionRefusedError, OSError):
-        print(f"Error connecting to {ip}")
+    except ConnectionError as e:
+        print(f"Connection error: {e}")
+        exit(1)
+    except TimeoutError as e:
+        print(f"Timeout error: {e}")
+        exit(1)
+    except ValueError as e:
+        print(f"Protocol error: {e}")
+        exit(1)
+    except Exception as e:
+        print(f"Unexpected error: {e}")
         exit(1)
