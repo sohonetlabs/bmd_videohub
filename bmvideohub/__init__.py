@@ -207,7 +207,7 @@ class VideoHub:
         Can only be set to O or U
         """
         if state not in ["O", "U"]:
-            raise Exception("OUTPUT LOCK must be O, or U, not {state}")
+            raise Exception(f"OUTPUT LOCK must be O, or U, not {state}")
         self._set_simple_value("VIDEO OUTPUT LOCKS:", f"{index} {state}")
 
     def set_bulk_output_lock(self, locks):
@@ -219,7 +219,7 @@ class VideoHub:
         """
         for _index, state in locks:
             if state not in ["O", "U"]:
-                raise Exception("OUTPUT LOCK must be O, U, not {index}, {state}")
+                raise Exception(f"OUTPUT LOCK must be O, U, not {_index}, {state}")
         self._set_multi_value("VIDEO OUTPUT LOCKS:", locks)
 
     def set_take_mode(self, index, mode):

@@ -10,7 +10,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--port",
         dest="port",
-        type=str,
+        type=int,
         help="telnet port defaults to 9990",
         required=False,
         default=9990,

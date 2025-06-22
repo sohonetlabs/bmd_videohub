@@ -10,7 +10,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--port",
         dest="port",
-        type=str,
+        type=int,
         help="telnet port",
         required=False,
         default=9990,
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         "-il",
         dest="apply_input_labels",
         action="store_true",
-        help="process input lables, defaults to False",
+        help="process input labels, defaults to False",
         required=False,
         default=False,
     )
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         "-ol",
         dest="apply_output_labels",
         action="store_true",
-        help="process output lables, defaults to False",
+        help="process output labels, defaults to False",
         required=False,
         default=False,
     )
@@ -140,9 +140,9 @@ if __name__ == "__main__":
                 if apply_routes:
                     print("-" * 40)
                     print("Routing:")
-                    print("Soruce -> Destination")
+                    print("Source -> Destination")
                     print("-" * 40)
-                    # re read the lables as they have may have changed
+                    # re read the labels as they may have changed
                     output_labels = vh.get_output_labels()
                     input_labels = vh.get_input_labels()
                     bulk_commands = []
